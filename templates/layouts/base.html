@@ -1,63 +1,34 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | {% block title %}{% endblock title %}</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <title>
+    Kitchen Service - {% block title %}{% endblock %}
+  </title>
 
+  <!-- Fonts and icons -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link href="{% static 'assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link id="pagestyle" href="{% static 'assets/css/material-kit.css' %}" rel="stylesheet" />
 
-  {% block extrastyle %}{% endblock extrastyle %}
+  {% block stylesheets %}{% endblock %}
 </head>
-<body class="{% block bodyclass %}{% endblock bodyclass %}">
 
-  <div class="wrapper">
+<body class="{% block body_class %}{% endblock %} bg-gray-200">
 
-    {% block preloader %}
-      <!-- Preloader -->
-      <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__shake" src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTELogo" height="60" width="60">
-      </div>
-    {% endblock preloader %}
+  {% block content %}{% endblock %}
 
-    {% block header %}
-      {% include 'includes/navigation-light.html' %}
-    {% endblock header %}
-
-    {% block sidebar %}
-      {% include 'includes/sidebar.html' %}
-    {% endblock sidebar %}
-    
-    {% block content %}{% endblock content %}
-
-    {% block footer %}
-      {% include 'includes/footer.html' %}
-    {% endblock footer %}
-
-    {% block control_sidebar %}
-      
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Control sidebar content goes here -->
-      </aside>
-      <!-- /.control-sidebar -->
-    
-    {% endblock control_sidebar %}
-
-  </div>
-  
+  {% include 'includes/footer.html' %}
   {% include 'includes/scripts.html' %}
-  {% block extra_scripts %}{% endblock extra_scripts %}
 
-
+  {% block javascripts %}{% endblock %}
 </body>
 </html>
