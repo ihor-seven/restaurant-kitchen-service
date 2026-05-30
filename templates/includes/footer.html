@@ -1,11 +1,52 @@
 {% load static %}
+<footer class="footer pt-5 mt-5 bg-dark text-white">
+  <div class="container">
+    <div class="row">
+      <!-- Логотип -->
+      <div class="col-md-3 mb-4">
+        <a href="/">
+          <img src="{% static 'assets/img/logo-ct-dark.png' %}" alt="Kitchen Logo" class="mb-3 footer-logo">
+        </a>
+        <h6 class="font-weight-bolder mb-4">Kitchen Service</h6>
+      </div>
 
-<footer class="main-footer">
+      <!-- Навігація -->
+      <div class="col-md-3 col-sm-6 mb-4">
+        <h6 class="text-sm">Navigation</h6>
+        <ul class="flex-column nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'kitchen:index' %}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'kitchen:dish-list' %}">Dishes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="{% url 'kitchen:cook-list' %}">Cooks</a>
+          </li>
+        </ul>
+      </div>
 
-  <strong>&copy; AdminLTE.io</strong> - coded by <a target="_blank" href="https://app-generator.dev">App-Generator</a>.
+      <!-- Контакти -->
+      <div class="col-md-3 col-sm-6 mb-4">
+        <h6 class="text-sm">Contacts</h6>
+        <ul class="flex-column nav">
+          <li class="nav-item">
+            <span class="nav-link text-white">📧 support@kitchen-service.com</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link text-white">📞 +380 67 123 45 67</span>
+          </li>
+        </ul>
+      </div>
 
-  <div class="float-right d-none d-sm-inline-block">
-    <b>Version</b> 3.2.0
+      <!-- Авторське право -->
+      <div class="col-12">
+        <div class="text-center mt-4">
+          <p class="text-sm font-weight-normal">
+            &copy; 2026 Kitchen Service. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-
 </footer>
