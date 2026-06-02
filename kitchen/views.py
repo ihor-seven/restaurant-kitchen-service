@@ -3,7 +3,10 @@ from django.views.generic import (
 )
 from django.urls import reverse_lazy
 from kitchen.models import Dish, Cook
+from django.shortcuts import render
 
+def index(request):
+    return render(request, "kitchen/index.html")
 
 class DishListView(ListView):
     model = Dish
