@@ -34,6 +34,22 @@
               <i class="fa-solid fa-user-chef"></i> Cooks
             </a>
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <form method="post" action="{% url 'logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link nav-link text-danger p-0">
+                  <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+              </form>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-success" href="{% url 'login' %}">
+                <i class="fa-solid fa-right-to-bracket"></i> Login
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
     </div>

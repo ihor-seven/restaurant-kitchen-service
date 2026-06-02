@@ -1,5 +1,5 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
+
 from kitchen import views
 
 app_name = "kitchen"
@@ -43,8 +43,7 @@ urlpatterns = [
     path(
         "dish-types/",
         views.DishTypeListView.as_view(),
-        name="dishtype-list"
-    ),
+        name="dishtype-list"),
     path(
         "dish-types/<int:pk>/",
         views.DishTypeDetailView.as_view(),
@@ -65,12 +64,4 @@ urlpatterns = [
         views.DishTypeDeleteView.as_view(),
         name="dishtype-delete",
     ),
-    path(
-        "login/",
-        auth_views.LoginView.as_view(
-            template_name="registration/login.html"
-        ),
-        name="login",
-    ),
-    path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ]
