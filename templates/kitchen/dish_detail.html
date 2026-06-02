@@ -1,0 +1,15 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ dish.name }}</h2>
+  <p>{{ dish.description }}</p>
+  <p><strong>Price:</strong> {{ dish.price }}</p>
+  <p><strong>Type:</strong> {{ dish.dish_type }}</p>
+  <p><strong>Cooks:</strong>
+    {% for cook in dish.cooks.all %}
+      {{ cook.first_name }} {{ cook.last_name }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+  <a href="{% url 'kitchen:dish-list' %}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}

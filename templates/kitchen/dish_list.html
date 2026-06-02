@@ -1,0 +1,33 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container-fluid">
+  <h2 class="mb-4">Dishes</h2>
+  <div class="row">
+    {% for dish in object_list %}
+    <div class="col-md-4">
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ dish.name }}</h5>
+          <p class="card-text">{{ dish.description }}</p>
+          <p class="card-text"><strong>Price:</strong> {{ dish.price }}</p>
+          <a href="{% url 'kitchen:dish-detail' dish.id %}" class="btn btn-info btn-sm">
+            <i class="fa-solid fa-eye"></i> View
+          </a>
+          <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-warning btn-sm">
+            <i class="fa-solid fa-pen"></i> Edit
+          </a>
+          <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger btn-sm">
+            <i class="fa-solid fa-trash"></i> Delete
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No dishes available.</p>
+    {% endfor %}
+  </div>
+  <a href="{% url 'kitchen:dish-create' %}" class="btn btn-success mt-3">
+    <i class="fa-solid fa-plus"></i> Add Dish
+  </a>
+</div>
+{% endblock %}

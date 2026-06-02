@@ -13,7 +13,7 @@ class Cook(AbstractUser):
     years_of_experience = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.username
+        return f"{self.first_name} {self.last_name}"
 
 
 class Dish(models.Model):

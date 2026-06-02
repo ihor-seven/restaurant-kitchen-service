@@ -1,0 +1,9 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ cook.first_name }} {{ cook.last_name }}</h2>
+  <p><strong>Username:</strong> {{ cook.username }}</p>
+  <p><strong>Experience:</strong> {{ cook.years_of_experience }} years</p>
+  <a href="{% url 'kitchen:cook-list' %}" class="btn btn-secondary">Back</a>
+</div>
+{% endblock %}
