@@ -4,10 +4,16 @@ from django.views.generic import (
 from django.urls import reverse_lazy
 from kitchen.models import Dish, Cook
 from django.shortcuts import render
+from django.db.models import Avg
 
 
 def index(request):
-    return render(request, "kitchen/index.html")
+    context = {
+        "dish_count": Dish.objects.count(),
+        "cook_count": Cook.objects.count(),
+        "avg_price": Dish.objects.aggregate(Avg("price"))["price__avg"],
+    }
+    return render(request, "kitchen/index.html", context)
 
 
 class DishListView(ListView):

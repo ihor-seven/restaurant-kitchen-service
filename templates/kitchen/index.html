@@ -1,10 +1,34 @@
 {% extends "layouts/base.html" %}
 {% block content %}
-<div class="container mt-4">
-  <h1 class="text-primary text-center">Kitchen Dashboard</h1>
-  <div class="card mt-3">
-    <div class="card-body">
-      Welcome to Restaurant Kitchen Service!
+<div class="container-fluid">
+  <h2 class="mb-4">Kitchen Dashboard</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <i class="fa-solid fa-utensils fa-2x mb-2"></i>
+          <h5 class="card-title">Total Dishes</h5>
+          <p class="card-text">{{ dish_count }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <i class="fa-solid fa-user-chef fa-2x mb-2"></i>
+          <h5 class="card-title">Total Cooks</h5>
+          <p class="card-text">{{ cook_count }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <i class="fa-solid fa-money-bill-wave fa-2x mb-2"></i>
+          <h5 class="card-title">Average Price</h5>
+          <p class="card-text">{{ avg_price|floatformat:2 }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
