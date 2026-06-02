@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Dish, Cook
+from kitchen.models import Dish, Cook
 
 def index(request):
     return render(request, "kitchen/index.html")
