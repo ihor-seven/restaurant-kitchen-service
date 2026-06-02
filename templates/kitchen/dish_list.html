@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Dishes</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for dish in object_list %}
+      <tr>
+        <td>{{ dish.name }}</td>
+        <td>{{ dish.dish_type }}</td>
+        <td>{{ dish.price }}</td>
+        <td>
+          <a href="{% url 'kitchen:dish-detail' dish.id %}" class="btn btn-info btn-sm">View</a>
+          <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-primary btn-sm">Edit</a>
+          <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'kitchen:dish-create' %}" class="btn btn-success">Add Dish</a>
+</div>
+{% endblock %}

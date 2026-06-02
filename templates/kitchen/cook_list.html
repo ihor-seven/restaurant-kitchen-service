@@ -1,0 +1,31 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Cooks</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Name</th>
+        <th>Experience</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cook in object_list %}
+      <tr>
+        <td>{{ cook.username }}</td>
+        <td>{{ cook.first_name }} {{ cook.last_name }}</td>
+        <td>{{ cook.years_of_experience }}</td>
+        <td>
+          <a href="{% url 'kitchen:cook-detail' cook.id %}" class="btn btn-info btn-sm">View</a>
+          <a href="{% url 'kitchen:cook-update' cook.id %}" class="btn btn-primary btn-sm">Edit</a>
+          <a href="{% url 'kitchen:cook-delete' cook.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'kitchen:cook-create' %}" class="btn btn-success">Add Cook</a>
+</div>
+{% endblock %}
