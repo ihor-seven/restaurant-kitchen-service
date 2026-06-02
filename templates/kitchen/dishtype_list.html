@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Dish Types</h2>
+  <ul class="list-group">
+    {% for dishtype in object_list %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ dishtype.name }}
+        <span>
+          <a href="{% url 'kitchen:dishtype-detail' dishtype.id %}" class="btn btn-info btn-sm">View</a>
+          <a href="{% url 'kitchen:dishtype-update' dishtype.id %}" class="btn btn-warning btn-sm">Edit</a>
+          <a href="{% url 'kitchen:dishtype-delete' dishtype.id %}" class="btn btn-danger btn-sm">Delete</a>
+        </span>
+      </li>
+    {% empty %}
+      <li class="list-group-item">No dish types available.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'kitchen:dishtype-create' %}" class="btn btn-success mt-3">Add Dish Type</a>
+</div>
+{% endblock %}
