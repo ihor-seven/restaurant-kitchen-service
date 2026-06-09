@@ -1,13 +1,9 @@
-from .base import *
-
-# SECURITY WARNING: don't run with debug turned on in production!
+import os
+from .base import BASE_DIR
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "True"
 
 ALLOWED_HOSTS = ["127.0.0.1"]
-
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
     'default': {

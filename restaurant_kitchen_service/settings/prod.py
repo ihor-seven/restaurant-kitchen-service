@@ -1,6 +1,5 @@
 from .base import *
-
-# SECURITY WARNING: don't run with debug turned on in production!
+import os
 
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
@@ -9,9 +8,6 @@ ALLOWED_HOSTS = [
     "localhost",
     "restaurant-kitchen-service-azu5.onrender.com",
 ]
-
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
     'default': {

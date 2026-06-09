@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from kitchen.models import Dish, Cook, DishType
 from django.shortcuts import render
 from django.db.models import Avg
+from django.contrib.auth.forms import UserCreationForm
+from django.views import generic
 
 
 def index(request):
@@ -14,6 +16,12 @@ def index(request):
         "avg_price": Dish.objects.aggregate(Avg("price"))["price__avg"],
     }
     return render(request, "kitchen/index.html", context)
+
+
+class RegisterView(generic.CreateView):
+    form_class = UserCreationForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("login")
 
 
 class DishListView(ListView):
