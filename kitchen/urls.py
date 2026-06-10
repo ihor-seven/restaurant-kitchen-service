@@ -1,18 +1,13 @@
 from django.urls import path
-from django.views.generic import TemplateView
 
 from kitchen import views
-
+from kitchen.views import RegisterView
 
 app_name = "kitchen"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path(
-        "register/",
-        TemplateView.as_view(template_name="registration/register.html"),
-        name="register"
-         ),
+    path("register/", RegisterView.as_view(), name="register"),
     path("dishes/", views.DishListView.as_view(), name="dish-list"),
     path(
         "dishes/<int:pk>/",

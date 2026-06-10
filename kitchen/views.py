@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from kitchen.models import Dish, Cook, DishType
 from django.shortcuts import render
 from django.db.models import Avg
-from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
+from .forms import CookCreationForm
 
 
 def index(request):
@@ -19,9 +19,9 @@ def index(request):
 
 
 class RegisterView(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = CookCreationForm
     template_name = "registration/register.html"
-    success_url = reverse_lazy("login")
+    success_url = reverse_lazy("kitchen:index")
 
 
 class DishListView(ListView):
