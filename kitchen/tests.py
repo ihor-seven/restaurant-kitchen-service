@@ -18,10 +18,11 @@ class DishModelTest(TestCase):
 
 class CookModelTest(TestCase):
     def test_create_cook(self):
-        cook = Cook.objects.create(
+        cook = Cook.objects.create_user(
+            username="ivanpetrenko",
+            password="testpass",
             first_name="Ivan",
             last_name="Petrenko",
-            username="ivanpetrenko",
             years_of_experience=3
         )
         self.assertEqual(str(cook), "Ivan Petrenko")
@@ -37,11 +38,22 @@ class DashboardViewTest(TestCase):
 
 class DishCRUDTest(TestCase):
     def setUp(self):
+        # створюємо користувача Cook і логінимо його
+        self.user = Cook.objects.create_user(
+            username="testuser",
+            password="testpass",
+            first_name="Test",
+            last_name="User",
+            years_of_experience=1
+        )
+        self.client.login(username="testuser", password="testpass")
+
         self.dish_type = DishType.objects.create(name="Soup")
-        self.cook = Cook.objects.create(
+        self.cook = Cook.objects.create_user(
+            username="ivanpetrenko",
+            password="somepass",
             first_name="Ivan",
             last_name="Petrenko",
-            username="ivanpetrenko",
             years_of_experience=3
         )
         self.dish = Dish.objects.create(
@@ -94,3 +106,4 @@ class DishCRUDTest(TestCase):
         response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.assertFalse(Dish.objects.filter(id=self.dish.id).exists())
+        
