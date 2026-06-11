@@ -8,14 +8,18 @@
         {{ dishtype.name }}
         <span>
           <a href="{% url 'kitchen:dishtype-detail' dishtype.id %}" class="btn btn-info btn-sm">View</a>
-          <a href="{% url 'kitchen:dishtype-update' dishtype.id %}" class="btn btn-warning btn-sm">Edit</a>
-          <a href="{% url 'kitchen:dishtype-delete' dishtype.id %}" class="btn btn-danger btn-sm">Delete</a>
+          {% if user.is_authenticated %}
+            <a href="{% url 'kitchen:dishtype-update' dishtype.id %}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{% url 'kitchen:dishtype-delete' dishtype.id %}" class="btn btn-danger btn-sm">Delete</a>
+          {% endif %}
         </span>
       </li>
     {% empty %}
       <li class="list-group-item">No dish types available.</li>
     {% endfor %}
   </ul>
-  <a href="{% url 'kitchen:dishtype-create' %}" class="btn btn-success mt-3">Add Dish Type</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'kitchen:dishtype-create' %}" class="btn btn-success mt-3">Add Dish Type</a>
+  {% endif %}
 </div>
 {% endblock %}

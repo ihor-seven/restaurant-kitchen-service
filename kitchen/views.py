@@ -1,12 +1,12 @@
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from django.urls import reverse_lazy
-from kitchen.models import Dish, Cook, DishType
 from django.shortcuts import render
 from django.db.models import Avg
-from django.views import generic
+from .models import Dish, Cook, DishType
 from .forms import CookCreationForm
 
 
@@ -14,18 +14,19 @@ def index(request):
     context = {
         "dish_count": Dish.objects.count(),
         "cook_count": Cook.objects.count(),
-        "avg_price": Dish.objects.aggregate(Avg("price"))["price__avg"],
+        "avg_price": Dish.objects.aggregate(Avg("price"))["price__avg"] or 0,
     }
     return render(request, "kitchen/index.html", context)
 
 
-class RegisterView(generic.CreateView):
+class RegisterView(CreateView):
     form_class = CookCreationForm
     template_name = "registration/register.html"
     success_url = reverse_lazy("kitchen:index")
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        # автоматичний логін після реєстрації
         login(self.request, self.object)
         return response
 
@@ -40,21 +41,21 @@ class DishDetailView(DetailView):
     template_name = "kitchen/dish_detail.html"
 
 
-class DishCreateView(CreateView):
+class DishCreateView(LoginRequiredMixin, CreateView):
     model = Dish
     fields = ["name", "description", "price", "dish_type", "cooks"]
     template_name = "kitchen/dish_form.html"
     success_url = reverse_lazy("kitchen:dish-list")
 
 
-class DishUpdateView(UpdateView):
+class DishUpdateView(LoginRequiredMixin, UpdateView):
     model = Dish
     fields = ["name", "description", "price", "dish_type", "cooks"]
     template_name = "kitchen/dish_form.html"
     success_url = reverse_lazy("kitchen:dish-list")
 
 
-class DishDeleteView(DeleteView):
+class DishDeleteView(LoginRequiredMixin, DeleteView):
     model = Dish
     template_name = "kitchen/dish_confirm_delete.html"
     success_url = reverse_lazy("kitchen:dish-list")
@@ -70,21 +71,21 @@ class CookDetailView(DetailView):
     template_name = "kitchen/cook_detail.html"
 
 
-class CookCreateView(CreateView):
+class CookCreateView(LoginRequiredMixin, CreateView):
     model = Cook
     fields = ["username", "first_name", "last_name", "years_of_experience"]
     template_name = "kitchen/cook_form.html"
     success_url = reverse_lazy("kitchen:cook-list")
 
 
-class CookUpdateView(UpdateView):
+class CookUpdateView(LoginRequiredMixin, UpdateView):
     model = Cook
     fields = ["username", "first_name", "last_name", "years_of_experience"]
     template_name = "kitchen/cook_form.html"
     success_url = reverse_lazy("kitchen:cook-list")
 
 
-class CookDeleteView(DeleteView):
+class CookDeleteView(LoginRequiredMixin, DeleteView):
     model = Cook
     template_name = "kitchen/cook_confirm_delete.html"
     success_url = reverse_lazy("kitchen:cook-list")
@@ -100,21 +101,21 @@ class DishTypeDetailView(DetailView):
     template_name = "kitchen/dishtype_detail.html"
 
 
-class DishTypeCreateView(CreateView):
+class DishTypeCreateView(LoginRequiredMixin, CreateView):
     model = DishType
     fields = ["name"]
     template_name = "kitchen/dishtype_form.html"
     success_url = reverse_lazy("kitchen:dishtype-list")
 
 
-class DishTypeUpdateView(UpdateView):
+class DishTypeUpdateView(LoginRequiredMixin, UpdateView):
     model = DishType
     fields = ["name"]
     template_name = "kitchen/dishtype_form.html"
     success_url = reverse_lazy("kitchen:dishtype-list")
 
 
-class DishTypeDeleteView(DeleteView):
+class DishTypeDeleteView(LoginRequiredMixin, DeleteView):
     model = DishType
     template_name = "kitchen/dishtype_confirm_delete.html"
     success_url = reverse_lazy("kitchen:dishtype-list")

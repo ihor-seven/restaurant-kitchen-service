@@ -10,6 +10,12 @@
       {{ cook.first_name }} {{ cook.last_name }}{% if not forloop.last %}, {% endif %}
     {% endfor %}
   </p>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'kitchen:dish-update' dish.id %}" class="btn btn-warning">Edit</a>
+    <a href="{% url 'kitchen:dish-delete' dish.id %}" class="btn btn-danger">Delete</a>
+  {% endif %}
+
   <a href="{% url 'kitchen:dish-list' %}" class="btn btn-secondary">Back</a>
 </div>
 {% endblock %}

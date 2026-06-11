@@ -4,6 +4,12 @@
   <h2>{{ cook.first_name }} {{ cook.last_name }}</h2>
   <p><strong>Username:</strong> {{ cook.username }}</p>
   <p><strong>Experience:</strong> {{ cook.years_of_experience }} years</p>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'kitchen:cook-update' cook.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'kitchen:cook-delete' cook.id %}" class="btn btn-danger">Delete</a>
+  {% endif %}
+
   <a href="{% url 'kitchen:cook-list' %}" class="btn btn-secondary">Back</a>
 </div>
 {% endblock %}
