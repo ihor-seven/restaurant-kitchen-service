@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
@@ -22,6 +23,11 @@ class RegisterView(generic.CreateView):
     form_class = CookCreationForm
     template_name = "registration/register.html"
     success_url = reverse_lazy("kitchen:index")
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        login(self.request, self.object)
+        return response
 
 
 class DishListView(ListView):
