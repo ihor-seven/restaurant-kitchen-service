@@ -10,6 +10,12 @@ Includes dashboard, dishes management, and cooks management.
 ## Demo
 ![Website Interface](static/assets/img/logo.png)
 
+### Test User Login
+To explore the site without registration, use the demo account:
+
+- **Login:** `user`  
+- **Password:** `user12345`
+
 ## Installing / Getting started
 
 Clone the repository and set up the environment:
